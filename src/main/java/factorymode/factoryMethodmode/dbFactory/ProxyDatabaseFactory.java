@@ -24,6 +24,7 @@ public class ProxyDatabaseFactory implements IDatabaseFactory {
     @Override
     public IConnection createConnection() {
         IConnection connection = factory.createConnection();
+        // 返回包装后的代理对象，在代理类中做功能增强
         return (IConnection) Proxy.newProxyInstance(
                 connection.getClass().getClassLoader(),
                 new Class[]{IConnection.class},

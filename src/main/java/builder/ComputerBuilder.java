@@ -3,7 +3,7 @@ package builder;
 /**
  * @author：marco.pan
  * @ClassName：ComputerBuilder
- * @Description：
+ * @Description：构造非必须属性
  * @date: 2026年02月06日 15:13
  */
 public abstract class ComputerBuilder {

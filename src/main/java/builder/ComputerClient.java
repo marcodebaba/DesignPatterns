@@ -9,7 +9,7 @@ package builder;
 public class ComputerClient {
     public static void main(String[] args) {
         ComputerDirector director = new ComputerDirector();
-        ComputerBuilder builder = new MacComputerBuilder("I5处理器", "三星125");
+        ComputerBuilder builder = new MacComputerBuilder("Mac处理器", "三星125");
         director.makeComputer(builder);
         Computer macComputer = builder.getComputer();
         System.out.println("mac computer:" + macComputer.toString());

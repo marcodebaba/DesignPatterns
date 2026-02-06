@@ -5,7 +5,6 @@ import factorymode.factoryMethodmode.dbFactory.MySQLFactory;
 import factorymode.factoryMethodmode.dbFactory.PostgreSQLFactory;
 import factorymode.factoryMethodmode.dbFactory.ProxyDatabaseFactory;
 
-
 /**
  * @author：marco.pan
  * @ClassName：DatabaseFactoryProvider

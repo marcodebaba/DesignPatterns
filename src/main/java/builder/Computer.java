@@ -1,11 +1,18 @@
 package builder;
 
+import lombok.*;
+
 /**
  * @author：marco.pan
  * @ClassName：Computer
  * @Description：
  * @date: 2026年02月06日 15:13
  */
+@ToString
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Computer {
     private String cpu;//必须
     private String ram;//必须
@@ -13,31 +20,26 @@ public class Computer {
     private String keyboard;//可选
     private String display;//可选
 
+    /**
+     * 把变量分成两类，一类是必须的，还有一类是非必须的（也就是需要通过builder来构造的）
+     * @param cpu
+     * @param ram
+     */
     public Computer(String cpu, String ram) {
         this.cpu = cpu;
         this.ram = ram;
     }
 
-    public void setUsbCount(int usbCount) {
-        this.usbCount = usbCount;
-    }
+//    public void setUsbCount(int usbCount) {
+//        this.usbCount = usbCount;
+//    }
+//
+//    public void setKeyboard(String keyboard) {
+//        this.keyboard = keyboard;
+//    }
+//
+//    public void setDisplay(String display) {
+//        this.display = display;
+//    }
 
-    public void setKeyboard(String keyboard) {
-        this.keyboard = keyboard;
-    }
-
-    public void setDisplay(String display) {
-        this.display = display;
-    }
-
-    @Override
-    public String toString() {
-        return "Computer{" +
-                "cpu='" + cpu + '\'' +
-                ", ram='" + ram + '\'' +
-                ", usbCount=" + usbCount +
-                ", keyboard='" + keyboard + '\'' +
-                ", display='" + display + '\'' +
-                '}';
-    }
 }
