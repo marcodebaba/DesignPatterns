@@ -3,18 +3,17 @@ package proxy.cglibProxy;
 import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
-
-import java.lang.reflect.Method;
 
 public class CglibProxySubject {
 
-    public Object getCglibProxy(Class<?> clazz) {
+    public Object getCglibProxy(Class<?> target) {
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(clazz);
+        enhancer.setSuperclass(target);
+        // o是代理对象，target是被代理对象
         enhancer.setCallbacks(new Callback[]{(MethodInterceptor) (o, method, objects, methodProxy) -> {
             // before
-            Object result = methodProxy.invoke(clazz.newInstance(), objects);
+            Object result = method.invoke(target.newInstance(), objects);
+            //Object result = methodProxy.invokeSuper(o, objects);
             // after
             return result;
         }});
