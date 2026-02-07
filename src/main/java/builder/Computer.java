@@ -8,9 +8,7 @@ import lombok.*;
  * @Description：
  * @date: 2026年02月06日 15:13
  */
-@ToString
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Computer {
@@ -29,17 +27,4 @@ public class Computer {
         this.cpu = cpu;
         this.ram = ram;
     }
-
-//    public void setUsbCount(int usbCount) {
-//        this.usbCount = usbCount;
-//    }
-//
-//    public void setKeyboard(String keyboard) {
-//        this.keyboard = keyboard;
-//    }
-//
-//    public void setDisplay(String display) {
-//        this.display = display;
-//    }
-
 }

@@ -7,11 +7,11 @@ package builder;
  * @date: 2026年02月06日 15:13
  */
 public abstract class ComputerBuilder {
-    public abstract void setUsbCount();
+    public abstract ComputerBuilder setUsbCount(int usbCount);
 
-    public abstract void setKeyboard();
+    public abstract ComputerBuilder setKeyboard(String keyboard);
 
-    public abstract void setDisplay();
+    public abstract ComputerBuilder setDisplay(String display);
 
     public abstract Computer getComputer();
 }

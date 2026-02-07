@@ -14,18 +14,21 @@ public class MacComputerBuilder extends ComputerBuilder {
     }
 
     @Override
-    public void setUsbCount() {
-        computer.setUsbCount(2);
+    public ComputerBuilder setUsbCount(int usbCount) {
+        computer.setUsbCount(usbCount);
+        return this;
     }
 
     @Override
-    public void setKeyboard() {
-        computer.setKeyboard("苹果键盘");
+    public ComputerBuilder setKeyboard(String keyboard) {
+        computer.setKeyboard(keyboard);
+        return this;
     }
 
     @Override
-    public void setDisplay() {
-        computer.setDisplay("苹果显示器");
+    public ComputerBuilder setDisplay(String display) {
+        computer.setDisplay(display);
+        return this;
     }
 
     @Override

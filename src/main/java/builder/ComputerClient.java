@@ -8,15 +8,17 @@ package builder;
  */
 public class ComputerClient {
     public static void main(String[] args) {
-        ComputerDirector director = new ComputerDirector();
-        ComputerBuilder builder = new MacComputerBuilder("Mac处理器", "三星125");
-        director.makeComputer(builder);
-        Computer macComputer = builder.getComputer();
+        Computer macComputer = new MacComputerBuilder("Mac处理器", "三星125")
+                .setUsbCount(4)
+                .setDisplay("Mac 显示器")
+                .setKeyboard("Mac 键盘")
+                .getComputer();
         System.out.println("mac computer:" + macComputer.toString());
 
-        ComputerBuilder lenovoBuilder = new LenovoComputerBuilder("I7处理器", "海力士222");
-        director.makeComputer(lenovoBuilder);
-        Computer lenovoComputer = lenovoBuilder.getComputer();
+        Computer lenovoComputer = new LenovoComputerBuilder("I7处理器", "海力士222")
+                .setUsbCount(2)
+                .setKeyboard("Lenovo 键盘")
+                .getComputer();
         System.out.println("lenovo computer:" + lenovoComputer.toString());
     }
 }

@@ -14,18 +14,21 @@ public class LenovoComputerBuilder extends ComputerBuilder {
     }
 
     @Override
-    public void setUsbCount() {
-        computer.setUsbCount(4);
+    public ComputerBuilder setUsbCount(int usbCount) {
+        computer.setUsbCount(usbCount);
+        return this;
     }
 
     @Override
-    public void setKeyboard() {
-        computer.setKeyboard("联想键盘");
+    public ComputerBuilder setKeyboard(String keyboard) {
+        computer.setKeyboard(keyboard);
+        return this;
     }
 
     @Override
-    public void setDisplay() {
-        computer.setDisplay("联想显示器");
+    public ComputerBuilder setDisplay(String display) {
+        computer.setDisplay(display);
+        return this;
     }
 
     @Override
