@@ -1,28 +1,22 @@
 package adapterMode.adapter;
 
 import adapterMode.PassportService;
+import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RegisterForQQAdapter implements IRegisterAdapter {
-
-    private final PassportService passportService;
+public class RegisterForQQAdapter extends AbstractRegisterAdapter {
 
     public RegisterForQQAdapter(PassportService passportService) {
-        this.passportService = passportService;
-    }
-
-    @Override
-    public boolean isSupport(String channel) {
-        return "QQ".equalsIgnoreCase(channel);
+        super(passportService, RegisterChannel.QQ);
     }
 
     @Override
     public ResultMsg register(String id) {
         // 模拟调用 QQ 开放平台 API，用 openId 生成内部密码
-        String password = "QQ@" + id.hashCode();
+        String password = generatePassword("QQ", id);
         log.info("QQ Register logic: {}", id);
-        return passportService.register(id, password, "QQ");
+        return passportService.register(id, password, RegisterChannel.QQ.name());
     }
 }

@@ -1,28 +1,22 @@
 package adapterMode.adapter;
 
 import adapterMode.PassportService;
+import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RegisterForWeChatAdapter implements IRegisterAdapter {
-
-    private final PassportService passportService;
+public class RegisterForWeChatAdapter extends AbstractRegisterAdapter {
 
     public RegisterForWeChatAdapter(PassportService passportService) {
-        this.passportService = passportService;
-    }
-
-    @Override
-    public boolean isSupport(String channel) {
-        return "WeChat".equalsIgnoreCase(channel);
+        super(passportService, RegisterChannel.WECHAT);
     }
 
     @Override
     public ResultMsg register(String id) {
         // 模拟调用微信 API，用 openId 生成内部密码
-        String password = "WX@" + id.hashCode();
+        String password = generatePassword("WX", id);
         log.info("WeChat Register logic: {}", id);
-        return passportService.register(id, password, "WeChat");
+        return passportService.register(id, password, RegisterChannel.WECHAT.name());
     }
 }

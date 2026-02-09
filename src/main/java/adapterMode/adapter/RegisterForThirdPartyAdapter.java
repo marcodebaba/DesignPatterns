@@ -1,26 +1,21 @@
 package adapterMode.adapter;
 
 import adapterMode.IRegisterForThirdParty;
-import adapterMode.PassportService;
+import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterForThirdPartyAdapter implements IRegisterForThirdParty {
 
-    private final List<IRegisterAdapter> adapters = new ArrayList<>();
+    private final List<IRegisterAdapter> adapters;
 
-    public RegisterForThirdPartyAdapter() {
-        PassportService passportService = new PassportService();
-        adapters.add(new RegisterForQQAdapter(passportService));
-        adapters.add(new RegisterForWeChatAdapter(passportService));
-        adapters.add(new RegisterForTokenAdapter(passportService));
-        adapters.add(new RegisterForAlipayAdapter(passportService));
+    public RegisterForThirdPartyAdapter(List<IRegisterAdapter> adapters) {
+        this.adapters = adapters;
     }
 
     @Override
-    public ResultMsg registerByThird(String id, String channel) {
+    public ResultMsg registerByThird(String id, RegisterChannel channel) {
         for (IRegisterAdapter adapter : adapters) {
             if (adapter.isSupport(channel)) {
                 return adapter.register(id);
