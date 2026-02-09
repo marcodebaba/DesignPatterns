@@ -8,17 +8,17 @@ package builderMode;
  */
 public class ComputerClient {
     public static void main(String[] args) {
-        Computer macComputer = new MacComputerBuilder("Mac处理器", "三星125")
-                .setUsbCount(4)
-                .setDisplay("Mac 显示器")
-                .setKeyboard("Mac 键盘")
+        Computer macComputer = new Computer.Builder("Mac处理器", "三星125")
+                .usbCount(4)
+                .display("Mac 显示器")
+                .keyboard("Mac 键盘")
                 .build();
-        System.out.println("mac computer:" + macComputer);
+        System.out.println("Mac computer:" + macComputer);
 
-        Computer lenovoComputer = new LenovoComputerBuilder("I7处理器", "海力士222")
-                .setUsbCount(2)
-                .setKeyboard("Lenovo 键盘")
+        Computer lenovoComputer = new Computer.Builder("I7处理器", "海力士222")
+                .usbCount(2)
+                .keyboard("Lenovo 键盘")
                 .build();
-        System.out.println("lenovo computer:" + lenovoComputer);
+        System.out.println("Lenovo computer:" + lenovoComputer);
     }
 }

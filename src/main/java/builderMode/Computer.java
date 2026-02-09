@@ -1,6 +1,7 @@
 package builderMode;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author：marco.pan
@@ -17,8 +18,12 @@ public class Computer {
     private final String keyboard;//可选
     private final String display;//可选
 
+    private Computer(Builder builder) {
+        this(builder.cpu, builder.ram, builder.usbCount, builder.keyboard, builder.display);
+    }
+
     /**
-     * 把变量分成两类，一类是必须的，还有一类是非必须的（也就是需要通过builder来构造的）
+     * 包级别构造器，供同包的 ComputerBuilder（GoF风格）使用
      */
     Computer(String cpu, String ram, int usbCount, String keyboard, String display) {
         if (cpu == null || cpu.isEmpty()) {
@@ -32,5 +37,51 @@ public class Computer {
         this.usbCount = usbCount;
         this.keyboard = keyboard;
         this.display = display;
+    }
+
+    /**
+     * 静态内部类 Builder
+     */
+    public static class Builder {
+        // 必选参数
+        private final String cpu;
+        private final String ram;
+        // 可选参数（给默认值）
+        private int usbCount = 0;
+        private String keyboard;
+        private String display;
+
+        /**
+         * 必选参数通过构造器强制传入
+         */
+        public Builder(String cpu, String ram) {
+            if (cpu == null || cpu.isEmpty()) {
+                throw new IllegalArgumentException("cpu is required");
+            }
+            if (ram == null || ram.isEmpty()) {
+                throw new IllegalArgumentException("ram is required");
+            }
+            this.cpu = cpu;
+            this.ram = ram;
+        }
+
+        public Builder usbCount(int usbCount) {
+            this.usbCount = usbCount;
+            return this;
+        }
+
+        public Builder keyboard(String keyboard) {
+            this.keyboard = keyboard;
+            return this;
+        }
+
+        public Builder display(String display) {
+            this.display = display;
+            return this;
+        }
+
+        public Computer build() {
+            return new Computer(this);
+        }
     }
 }
