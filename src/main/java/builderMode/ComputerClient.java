@@ -12,13 +12,13 @@ public class ComputerClient {
                 .setUsbCount(4)
                 .setDisplay("Mac 显示器")
                 .setKeyboard("Mac 键盘")
-                .getComputer();
-        System.out.println("mac computer:" + macComputer.toString());
+                .build();
+        System.out.println("mac computer:" + macComputer);
 
         Computer lenovoComputer = new LenovoComputerBuilder("I7处理器", "海力士222")
                 .setUsbCount(2)
                 .setKeyboard("Lenovo 键盘")
-                .getComputer();
-        System.out.println("lenovo computer:" + lenovoComputer.toString());
+                .build();
+        System.out.println("lenovo computer:" + lenovoComputer);
     }
 }

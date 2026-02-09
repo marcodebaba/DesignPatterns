@@ -7,11 +7,33 @@ package builderMode;
  * @date: 2026年02月06日 15:13
  */
 public abstract class ComputerBuilder {
-    public abstract ComputerBuilder setUsbCount(int usbCount);
+    private final String cpu;
+    private final String ram;
+    private int usbCount;
+    private String keyboard;
+    private String display;
 
-    public abstract ComputerBuilder setKeyboard(String keyboard);
+    protected ComputerBuilder(String cpu, String ram) {
+        this.cpu = cpu;
+        this.ram = ram;
+    }
 
-    public abstract ComputerBuilder setDisplay(String display);
+    public ComputerBuilder setUsbCount(int usbCount) {
+        this.usbCount = usbCount;
+        return this;
+    }
 
-    public abstract Computer getComputer();
+    public ComputerBuilder setKeyboard(String keyboard) {
+        this.keyboard = keyboard;
+        return this;
+    }
+
+    public ComputerBuilder setDisplay(String display) {
+        this.display = display;
+        return this;
+    }
+
+    public Computer build() {
+        return new Computer(cpu, ram, usbCount, keyboard, display);
+    }
 }
