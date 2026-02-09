@@ -8,7 +8,7 @@ import factorymode.factoryMethodmode.command.MySQLCommand;
 /**
  * @author：marco.pan
  * @ClassName：MySQLFactory
- * @Description：
+ * @Description：MySQLFactory，用MySQL实现方式来实现产品等级
  * @date: 2026年02月05日 13:20
  */
 public class MySQLFactory implements IAbstractDatabaseFactory {
