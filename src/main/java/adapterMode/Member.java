@@ -16,9 +16,6 @@ public class Member {
     private String mid;
     private String info;
 
-    public Member() {
-    }
-
     public Member(String username, String password, String registerChannel) {
         this.username = username;
         this.password = password;

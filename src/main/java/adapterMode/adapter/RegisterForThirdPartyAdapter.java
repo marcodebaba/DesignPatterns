@@ -1,20 +1,20 @@
 package adapterMode.adapter;
 
-import adapterMode.IPassportForThird;
+import adapterMode.IRegisterForThirdParty;
 import adapterMode.PassportService;
 import adapterMode.ResultMsg;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassportForThirdAdapter implements IPassportForThird {
+public class RegisterForThirdPartyAdapter implements IRegisterForThirdParty {
 
     private final List<IRegisterAdapter> adapters = new ArrayList<>();
 
-    public PassportForThirdAdapter() {
+    public RegisterForThirdPartyAdapter() {
         PassportService passportService = new PassportService();
         adapters.add(new RegisterForQQAdapter(passportService));
-        adapters.add(new RegisterForWechatAdapter(passportService));
+        adapters.add(new RegisterForWeChatAdapter(passportService));
         adapters.add(new RegisterForTokenAdapter(passportService));
         adapters.add(new RegisterForAlipayAdapter(passportService));
     }
@@ -22,7 +22,7 @@ public class PassportForThirdAdapter implements IPassportForThird {
     @Override
     public ResultMsg registerByThird(String id, String channel) {
         for (IRegisterAdapter adapter : adapters) {
-            if (adapter.support(channel)) {
+            if (adapter.isSupport(channel)) {
                 return adapter.register(id);
             }
         }

@@ -14,7 +14,7 @@ public class RegisterForTokenAdapter implements IRegisterAdapter {
     }
 
     @Override
-    public boolean support(String channel) {
+    public boolean isSupport(String channel) {
         return "Token".equalsIgnoreCase(channel);
     }
 
@@ -23,7 +23,7 @@ public class RegisterForTokenAdapter implements IRegisterAdapter {
         // 模拟解析 Token，提取用户信息后注册
         String username = "TOKEN_USER_" + id;
         String password = "TK@" + id.hashCode();
-        log.info("TokenAdapter logic: {}", id);
+        log.info("Token Register logic: {}", id);
         return passportService.register(username, password, "Token");
     }
 }

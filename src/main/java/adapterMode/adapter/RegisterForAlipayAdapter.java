@@ -20,7 +20,7 @@ public class RegisterForAlipayAdapter implements IRegisterAdapter {
     }
 
     @Override
-    public boolean support(String channel) {
+    public boolean isSupport(String channel) {
         return "Alipay".equalsIgnoreCase(channel);
     }
 
@@ -28,7 +28,7 @@ public class RegisterForAlipayAdapter implements IRegisterAdapter {
     public ResultMsg register(String id) {
         // 模拟调用 QQ 开放平台 API，用 openId 生成内部密码
         String password = "Alipay@" + id.hashCode();
-        log.info("AlipayAdapter logic: {}", id);
+        log.info("Alipay Register logic: {}", id);
         return passportService.register(id, password, "Alipay");
     }
 }

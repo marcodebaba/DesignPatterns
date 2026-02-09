@@ -14,7 +14,7 @@ public class RegisterForQQAdapter implements IRegisterAdapter {
     }
 
     @Override
-    public boolean support(String channel) {
+    public boolean isSupport(String channel) {
         return "QQ".equalsIgnoreCase(channel);
     }
 
@@ -22,7 +22,7 @@ public class RegisterForQQAdapter implements IRegisterAdapter {
     public ResultMsg register(String id) {
         // 模拟调用 QQ 开放平台 API，用 openId 生成内部密码
         String password = "QQ@" + id.hashCode();
-        log.info("QQAdapter logic: {}", id);
+        log.info("QQ Register logic: {}", id);
         return passportService.register(id, password, "QQ");
     }
 }
