@@ -1,2 +1,9 @@
-# Project exclude paths
-/target/.DS_Store
+# Build output
+/target/
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
