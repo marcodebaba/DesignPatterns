@@ -3,7 +3,6 @@ package factorymode.factoryMethodmode.dbProvider;
 import factorymode.factoryMethodmode.dbFactory.IDatabaseFactory;
 import factorymode.factoryMethodmode.dbFactory.MySQLFactory;
 import factorymode.factoryMethodmode.dbFactory.PostgreSQLFactory;
-import factorymode.factoryMethodmode.dbFactory.ProxyDatabaseFactory;
 
 /**
  * @author：marco.pan
