@@ -2,7 +2,7 @@ package factorymode.factoryMethodmode;
 
 import factorymode.factoryMethodmode.command.ICommand;
 import factorymode.factoryMethodmode.connection.IConnection;
-import factorymode.factoryMethodmode.dbFactory.IDatabaseFactory;
+import factorymode.factoryMethodmode.dbFactory.IAbstractDatabaseFactory;
 import factorymode.factoryMethodmode.dbProvider.DatabaseFactoryProvider;
 
 /**
@@ -16,7 +16,7 @@ public class AbstractFactoryProxyDemo {
         System.out.println("测试 " + dbType + " 数据库");
 
         // 获取工厂
-        IDatabaseFactory factory = DatabaseFactoryProvider.getFactory(dbType);
+        IAbstractDatabaseFactory factory = DatabaseFactoryProvider.getFactory(dbType);
 
         // 创建连接对象
         IConnection connection = factory.createConnection();
@@ -34,10 +34,14 @@ public class AbstractFactoryProxyDemo {
     public static void main(String[] args) {
         // 场景1: 使用MySQL
         testDatabase("MySQL");
+        System.out.println("MySQL演示完成!");
 
         // 场景2: 使用PostgreSQL
         testDatabase("PostgreSQL");
+        System.out.println("PostgreSQL演示完成!");
 
-        System.out.println("演示完成!");
+        // 场景3: Oracle
+        testDatabase("Oracle");
+        System.out.println("Oracle演示完成!");
     }
 }

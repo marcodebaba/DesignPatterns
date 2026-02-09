@@ -11,7 +11,7 @@ import factorymode.factoryMethodmode.connection.PostgreSQLConnection;
  * @Description：
  * @date: 2026年02月05日 13:23
  */
-public class PostgreSQLFactory implements IDatabaseFactory {
+public class PostgreSQLFactory implements IAbstractDatabaseFactory {
     @Override
     public IConnection createConnection() {
         return new PostgreSQLConnection();

@@ -1,8 +1,7 @@
-package factorymode.factoryMethodmode.dbProvider;
+package factorymode.factoryMethodmode.dbFactory;
 
 import factorymode.factoryMethodmode.command.ICommand;
 import factorymode.factoryMethodmode.connection.IConnection;
-import factorymode.factoryMethodmode.dbFactory.IDatabaseFactory;
 import factorymode.factoryMethodmode.handler.LoggingInvocationHandler;
 
 import java.lang.reflect.Proxy;
@@ -10,14 +9,14 @@ import java.lang.reflect.Proxy;
 /**
  * @author：marco.pan
  * @ClassName：ProxyDatabaseFactory
- * @Description：
+ * @Description：作为代理类，实现所有的产品等级
  * @date: 2026年02月05日 13:25
  */
-public class ProxyDatabaseFactory implements IDatabaseFactory {
-    private final IDatabaseFactory factory;
+public class ProxyDatabaseFactory implements IAbstractDatabaseFactory {
+    private final IAbstractDatabaseFactory factory;
     private final String dbType;
 
-    public ProxyDatabaseFactory(IDatabaseFactory factory, String dbType) {
+    public ProxyDatabaseFactory(IAbstractDatabaseFactory factory, String dbType) {
         this.factory = factory;
         this.dbType = dbType;
     }

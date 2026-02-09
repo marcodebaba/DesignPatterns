@@ -6,10 +6,10 @@ import factorymode.factoryMethodmode.connection.IConnection;
 /**
  * @author：marco.pan
  * @ClassName：IDatabaseFactory
- * @Description：
+ * @Description：定义所有的产品等级
  * @date: 2026年02月06日 13:17
  */
-public interface IDatabaseFactory {
+public interface IAbstractDatabaseFactory {
 
     IConnection createConnection();
 

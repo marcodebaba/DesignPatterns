@@ -1,24 +1,24 @@
 package factorymode.factoryMethodmode.dbFactory;
 
 import factorymode.factoryMethodmode.command.ICommand;
+import factorymode.factoryMethodmode.command.OracleCommand;
 import factorymode.factoryMethodmode.connection.IConnection;
-import factorymode.factoryMethodmode.connection.MySQLConnection;
-import factorymode.factoryMethodmode.command.MySQLCommand;
+import factorymode.factoryMethodmode.connection.OracleConnection;
 
 /**
  * @author：marco.pan
- * @ClassName：MySQLFactory
+ * @ClassName：OracleFactory
  * @Description：
- * @date: 2026年02月05日 13:20
+ * @date: 2026年02月09日 15:45
  */
-public class MySQLFactory implements IAbstractDatabaseFactory {
+public class OracleFactory  implements IAbstractDatabaseFactory {
     @Override
     public IConnection createConnection() {
-        return new MySQLConnection();
+        return new OracleConnection();
     }
 
     @Override
     public ICommand createCommand() {
-        return new MySQLCommand();
+        return new OracleCommand();
     }
 }
