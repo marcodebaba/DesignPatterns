@@ -9,10 +9,10 @@ import java.util.List;
 
 public class PassportForThirdAdapter implements IPassportForThird {
 
-    private final PassportService passportService = new PassportService();
     private final List<IRegisterAdapter> adapters = new ArrayList<>();
 
     public PassportForThirdAdapter() {
+        PassportService passportService = new PassportService();
         adapters.add(new RegisterForQQAdapter(passportService));
         adapters.add(new RegisterForWechatAdapter(passportService));
         adapters.add(new RegisterForTokenAdapter(passportService));
