@@ -1,5 +1,6 @@
 package builderMode;
 
+import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,11 +13,17 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Computer {
-    private final String cpu;//必须
-    private final String ram;//必须
-    private final int usbCount;//可选
-    private final String keyboard;//可选
-    private final String display;//可选
+    @NotNull
+    private final String cpu;
+    @NotNull
+    private final String ram;
+
+    //usb接口数，可选
+    private final int usbCount;
+    //键盘，可选
+    private final String keyboard;
+    //显示器，可选
+    private final String display;
 
     private Computer(Builder builder) {
         this(builder.cpu, builder.ram, builder.usbCount, builder.keyboard, builder.display);
