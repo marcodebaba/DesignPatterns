@@ -1,0 +1,197 @@
+@startuml AbstractFactoryPattern
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 14
+skinparam classHeaderBackgroundColor #E8F5E9
+skinparam classBorderColor #388E3C
+skinparam ArrowColor #1B5E20
+skinparam backgroundColor #FAFAFA
+
+title 抽象工厂模式 + 动态代理 - 类图
+
+' ==================== 产品等级：Connection ====================
+
+package "connection" #F3E5F5 {
+    interface IConnection <<interface>> {
+        + connect() : void
+        + disconnect() : void
+        + executeQuery(sql : String) : String
+    }
+
+    class MySQLConnection {
+        + connect() : void
+        + disconnect() : void
+        + executeQuery(sql : String) : String
+    }
+
+    class PostgreSQLConnection {
+        + connect() : void
+        + disconnect() : void
+        + executeQuery(sql : String) : String
+    }
+
+    class OracleConnection {
+        + connect() : void
+        + disconnect() : void
+        + executeQuery(sql : String) : String
+    }
+}
+
+' ==================== 产品等级：Command ====================
+
+package "command" #E3F2FD {
+    interface ICommand <<interface>> {
+        + execute(command : String) : void
+        + getResult() : String
+    }
+
+    class MySQLCommand {
+        - result : String
+        --
+        + execute(command : String) : void
+        + getResult() : String
+    }
+
+    class PostgreSQLCommand {
+        - result : String
+        --
+        + execute(command : String) : void
+        + getResult() : String
+    }
+
+    class OracleCommand {
+        - result : String
+        --
+        + execute(command : String) : void
+        + getResult() : String
+    }
+}
+
+' ==================== 抽象工厂 + 具体工厂 ====================
+
+package "dbFactory" #FFF3E0 {
+    interface IAbstractDatabaseFactory <<interface>> {
+        + createConnection() : IConnection
+        + createCommand() : ICommand
+    }
+
+    class MySQLFactory {
+        + createConnection() : IConnection
+        + createCommand() : ICommand
+    }
+
+    class PostgreSQLFactory {
+        + createConnection() : IConnection
+        + createCommand() : ICommand
+    }
+
+    class OracleFactory {
+        + createConnection() : IConnection
+        + createCommand() : ICommand
+    }
+
+    class ProxyDatabaseFactory {
+        - factory : IAbstractDatabaseFactory {final}
+        - dbType : String {final}
+        --
+        + ProxyDatabaseFactory(factory, dbType)
+        + createConnection() : IConnection
+        + createCommand() : ICommand
+    }
+}
+
+' ==================== 动态代理 Handler ====================
+
+package "handler" #FFEBEE {
+    class LoggingInvocationHandler {
+        - target : Object {final}
+        - proxyName : String {final}
+        --
+        + LoggingInvocationHandler(target, proxyName)
+        + invoke(proxy, method, args) : Object
+    }
+}
+
+' ==================== Provider ====================
+
+package "dbProvider" #E8EAF6 {
+    class DatabaseFactoryProvider {
+        + {static} getFactory(dbType : String) : IAbstractDatabaseFactory
+    }
+}
+
+' ==================== Demo ====================
+
+class AbstractFactoryProxyDemo {
+    - {static} testDatabase(dbType : String) : void
+    + {static} main(args : String[]) : void
+}
+
+' ==================== 关系 ====================
+
+' Connection 实现
+MySQLConnection ..|> IConnection
+PostgreSQLConnection ..|> IConnection
+OracleConnection ..|> IConnection
+
+' Command 实现
+MySQLCommand ..|> ICommand
+PostgreSQLCommand ..|> ICommand
+OracleCommand ..|> ICommand
+
+' 工厂实现
+MySQLFactory ..|> IAbstractDatabaseFactory
+PostgreSQLFactory ..|> IAbstractDatabaseFactory
+OracleFactory ..|> IAbstractDatabaseFactory
+ProxyDatabaseFactory ..|> IAbstractDatabaseFactory
+
+' 工厂创建产品
+MySQLFactory ..> MySQLConnection : creates
+MySQLFactory ..> MySQLCommand : creates
+PostgreSQLFactory ..> PostgreSQLConnection : creates
+PostgreSQLFactory ..> PostgreSQLCommand : creates
+OracleFactory ..> OracleConnection : creates
+OracleFactory ..> OracleCommand : creates
+
+' 代理工厂 装饰/委托
+ProxyDatabaseFactory o--> IAbstractDatabaseFactory : delegates to
+ProxyDatabaseFactory ..> LoggingInvocationHandler : creates
+
+' LoggingInvocationHandler 实现 JDK InvocationHandler
+LoggingInvocationHandler ..|> java.lang.reflect.InvocationHandler
+
+' Provider 创建工厂
+DatabaseFactoryProvider ..> MySQLFactory : creates
+DatabaseFactoryProvider ..> PostgreSQLFactory : creates
+DatabaseFactoryProvider ..> OracleFactory : creates
+DatabaseFactoryProvider ..> ProxyDatabaseFactory : wraps with
+
+' Demo 使用
+AbstractFactoryProxyDemo ..> DatabaseFactoryProvider : uses
+AbstractFactoryProxyDemo ..> IAbstractDatabaseFactory : uses
+AbstractFactoryProxyDemo ..> IConnection : uses
+AbstractFactoryProxyDemo ..> ICommand : uses
+
+' ==================== 注释 ====================
+
+note right of ProxyDatabaseFactory
+  **代理工厂（装饰器模式）**
+  通过 JDK 动态代理包装
+  Connection 和 Command，
+  添加日志和耗时统计功能
+end note
+
+note bottom of DatabaseFactoryProvider
+  **工厂提供者**
+  根据 dbType 注册产品族，
+  返回被 ProxyDatabaseFactory
+  包装后的工厂实例
+end note
+
+note top of IAbstractDatabaseFactory
+  **抽象工厂接口**
+  定义所有产品等级：
+  Connection + Command
+end note
+
+@enduml
