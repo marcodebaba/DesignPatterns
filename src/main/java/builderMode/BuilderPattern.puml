@@ -1,0 +1,65 @@
+@startuml BuilderPattern
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 14
+skinparam classHeaderBackgroundColor #E8F5E9
+skinparam classBorderColor #388E3C
+skinparam ArrowColor #1B5E20
+skinparam backgroundColor #FAFAFA
+
+title Builder模式 - 类图
+
+class Computer {
+    - cpu : String  {final, required}
+    - ram : String  {final, required}
+    - usbCount : int  {final, optional}
+    - keyboard : String  {final, optional}
+    - display : String  {final, optional}
+    --
+    - Computer(builder : Builder)
+    ~ Computer(cpu, ram, usbCount, keyboard, display)
+    + getCpu() : String
+    + getRam() : String
+    + getUsbCount() : int
+    + getKeyboard() : String
+    + getDisplay() : String
+    + toString() : String
+}
+
+class "Computer.Builder" as Builder <<static>> {
+    - cpu : String  {final, required}
+    - ram : String  {final, required}
+    - usbCount : int = 0
+    - keyboard : String
+    - display : String
+    --
+    + Builder(cpu : String, ram : String)
+    + usbCount(usbCount : int) : Builder
+    + keyboard(keyboard : String) : Builder
+    + display(display : String) : Builder
+    + build() : Computer
+}
+
+class ComputerClient {
+    + {static} main(args : String[]) : void
+}
+
+Computer +-- Builder : inner class
+Builder ..> Computer : creates
+ComputerClient ..> Builder : uses
+ComputerClient ..> Computer : uses
+
+note right of Builder::build
+  return new Computer(this)
+end note
+
+note bottom of ComputerClient
+  **使用示例：**
+  new Computer.Builder("cpu", "ram")
+      .usbCount(4)
+      .keyboard("键盘")
+      .display("显示器")
+      .build();
+end note
+
+@enduml
