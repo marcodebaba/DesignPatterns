@@ -1,0 +1,152 @@
+@startuml AdapterPattern
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 14
+skinparam classHeaderBackgroundColor #E8F5E9
+skinparam classBorderColor #388E3C
+skinparam ArrowColor #1B5E20
+skinparam backgroundColor #FAFAFA
+
+title 适配器模式（Adapter Pattern） - 类图
+
+' ==================== 数据类 ====================
+
+class ResultMsg {
+    - code : int
+    - msg : String
+    - data : Object
+    --
+    + ResultMsg(code, msg, data)
+}
+
+class Member {
+    - username : String
+    - password : String
+    - registerChannel : String
+    - mid : String
+    - info : String
+    --
+    + Member(username, password, registerChannel)
+}
+
+enum RegisterChannel {
+    QQ
+    WECHAT
+    TOKEN
+    ALIPAY
+}
+
+' ==================== Target ====================
+
+class PassportService <<Target>> {
+    + register(username, password, registerChannel) : ResultMsg
+}
+
+' ==================== 统一对外接口 ====================
+
+interface IRegisterForThirdParty {
+    + registerByThird(id : String, channel : RegisterChannel) : ResultMsg
+}
+
+' ==================== Adapter 层 ====================
+
+interface IRegisterAdapter {
+    + isSupport(channel : RegisterChannel) : boolean
+    + register(id : String) : ResultMsg
+}
+
+abstract class AbstractRegisterAdapter {
+    # passportService : PassportService {final}
+    - channel : RegisterChannel {final}
+    --
+    # AbstractRegisterAdapter(passportService, channel)
+    + isSupport(channel : RegisterChannel) : boolean
+    # generatePassword(prefix : String, id : String) : String
+}
+
+class RegisterForThirdPartyAdapter {
+    - adapters : List<IRegisterAdapter> {final}
+    --
+    + RegisterForThirdPartyAdapter(adapters : List<IRegisterAdapter>)
+    + registerByThird(id, channel) : ResultMsg
+}
+
+class RegisterForQQAdapter {
+    + RegisterForQQAdapter(passportService)
+    + register(id : String) : ResultMsg
+}
+
+class RegisterForWeChatAdapter {
+    + RegisterForWeChatAdapter(passportService)
+    + register(id : String) : ResultMsg
+}
+
+class RegisterForTokenAdapter {
+    + RegisterForTokenAdapter(passportService)
+    + register(id : String) : ResultMsg
+}
+
+class RegisterForAlipayAdapter {
+    + RegisterForAlipayAdapter(passportService)
+    + register(id : String) : ResultMsg
+    # generatePassword(prefix, id) : String
+}
+
+' ==================== Client ====================
+
+class TestClient {
+    + {static} main(args : String[]) : void
+}
+
+' ==================== 关系 ====================
+
+' 实现
+AbstractRegisterAdapter .up.|> IRegisterAdapter
+RegisterForThirdPartyAdapter .up.|> IRegisterForThirdParty
+
+' 继承
+RegisterForQQAdapter -up-|> AbstractRegisterAdapter
+RegisterForWeChatAdapter -up-|> AbstractRegisterAdapter
+RegisterForTokenAdapter -up-|> AbstractRegisterAdapter
+RegisterForAlipayAdapter -up-|> AbstractRegisterAdapter
+
+' 聚合：ThirdPartyAdapter 持有 Adapter 列表
+RegisterForThirdPartyAdapter o-right-> IRegisterAdapter : adapters *
+
+' 依赖：AbstractRegisterAdapter 持有 PassportService
+AbstractRegisterAdapter -up-> PassportService : passportService
+
+' 创建关系
+PassportService ..> ResultMsg : creates
+PassportService ..> Member : creates
+
+' Client 依赖
+TestClient ..> RegisterForThirdPartyAdapter : creates
+TestClient ..> PassportService : creates
+TestClient ..> IRegisterForThirdParty : uses
+
+' ==================== 注释 ====================
+
+note top of PassportService
+  **Target（目标角色）**
+  已有的注册系统，适配器的
+  目的就是不修改它
+end note
+
+note top of IRegisterAdapter
+  **Adaptee 接口**
+  定义第三方适配能力
+end note
+
+note right of RegisterForThirdPartyAdapter
+  **策略分发器**
+  遍历 adapters，找到支持
+  当前渠道的适配器并委托调用
+end note
+
+note bottom of RegisterForAlipayAdapter
+  覆写了 generatePassword()
+  使用自定义密码生成逻辑
+end note
+
+@enduml
