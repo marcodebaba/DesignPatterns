@@ -1,6 +1,7 @@
 package adapterMode;
 
 import adapterMode.adapter.*;
+import adapterMode.facade.RegisterForThirdPartyFacade;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 public class TestClient {
     public static void main(String[] args) {
         PassportService passportService = new PassportService();
-        IRegisterForThirdParty adapter = new RegisterForThirdPartyAdapter(Arrays.asList(
+        IRegisterForThirdParty adapter = new RegisterForThirdPartyFacade(Arrays.asList(
                 new RegisterForQQAdapter(passportService),
                 new RegisterForWeChatAdapter(passportService),
                 new RegisterForTokenAdapter(passportService),

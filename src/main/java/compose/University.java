@@ -12,9 +12,9 @@ import java.util.List;
  * @date: 2026年02月10日 15:56
  */
 @Slf4j
-public class University extends OrganizationComponent {
+public class University extends AbstractOrganizationComponent {
 
-    List<OrganizationComponent> organizationComponents = new ArrayList<>();
+    List<AbstractOrganizationComponent> organizationComponents = new ArrayList<>();
 
     // 构造器
     public University(String name, String description) {
@@ -23,13 +23,13 @@ public class University extends OrganizationComponent {
 
     // 重写add
     @Override
-    protected void add(OrganizationComponent organizationComponent) {
+    protected void add(AbstractOrganizationComponent organizationComponent) {
         organizationComponents.add(organizationComponent);
     }
 
     // 重写remove
     @Override
-    protected void remove(OrganizationComponent organizationComponent) {
+    protected void remove(AbstractOrganizationComponent organizationComponent) {
         organizationComponents.remove(organizationComponent);
     }
 
@@ -47,7 +47,7 @@ public class University extends OrganizationComponent {
     @Override
     protected void print() {
         log.info("{}", this.getName());
-        for (OrganizationComponent organizationComponent : organizationComponents) {
+        for (AbstractOrganizationComponent organizationComponent : organizationComponents) {
             organizationComponent.print();
         }
     }

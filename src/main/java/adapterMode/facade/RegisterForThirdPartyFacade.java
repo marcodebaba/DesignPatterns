@@ -1,16 +1,17 @@
-package adapterMode.adapter;
+package adapterMode.facade;
 
 import adapterMode.IRegisterForThirdParty;
 import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
+import adapterMode.adapter.IRegisterAdapter;
 
 import java.util.List;
 
-public class RegisterForThirdPartyAdapter implements IRegisterForThirdParty {
+public class RegisterForThirdPartyFacade implements IRegisterForThirdParty {
 
     private final List<IRegisterAdapter> adapters;
 
-    public RegisterForThirdPartyAdapter(List<IRegisterAdapter> adapters) {
+    public RegisterForThirdPartyFacade(List<IRegisterAdapter> adapters) {
         this.adapters = adapters;
     }
 

@@ -9,11 +9,11 @@ package compose;
 public class ComposeClient {
     public static void main(String[] args) {
         //从大到小创建对象 学校
-        OrganizationComponent university = new University("清华大学", " 中国顶级大学 ");
+        AbstractOrganizationComponent university = new University("清华大学", " 中国顶级大学 ");
 
         //创建 学院
-        OrganizationComponent computerCollege = new College("计算机学院", " 计算机学院 ");
-        OrganizationComponent infoCollege = new College("信息工程学院", " 信息工程学院 ");
+        AbstractOrganizationComponent computerCollege = new College("计算机学院", " 计算机学院 ");
+        AbstractOrganizationComponent infoCollege = new College("信息工程学院", " 信息工程学院 ");
 
         //创建各个学院下面的系(专业)
         computerCollege.add(new Department("软件工程", " 软件工程不错 "));

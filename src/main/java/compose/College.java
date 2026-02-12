@@ -12,9 +12,9 @@ import java.util.List;
  * @date: 2026年02月10日 15:58
  */
 @Slf4j
-public class College extends OrganizationComponent {
+public class College extends AbstractOrganizationComponent {
     //List 中 存放的Department
-    List<OrganizationComponent> organizationComponents = new ArrayList<OrganizationComponent>();
+    List<AbstractOrganizationComponent> organizationComponents = new ArrayList<AbstractOrganizationComponent>();
 
     // 构造器
     public College(String name, String description) {
@@ -23,14 +23,14 @@ public class College extends OrganizationComponent {
 
     // 重写add
     @Override
-    protected void add(OrganizationComponent organizationComponent) {
+    protected void add(AbstractOrganizationComponent organizationComponent) {
         //  将来实际业务中，College 的 add 和 University add 不一定完全一样
         organizationComponents.add(organizationComponent);
     }
 
     // 重写remove
     @Override
-    protected void remove(OrganizationComponent organizationComponent) {
+    protected void remove(AbstractOrganizationComponent organizationComponent) {
         organizationComponents.remove(organizationComponent);
     }
 
@@ -50,7 +50,7 @@ public class College extends OrganizationComponent {
         //System.out.println("--------------" + getName() + "--------------");
         log.info("--------------{}--------------", this.getName());
         //遍历 organizationComponents
-        for (OrganizationComponent organizationComponent : organizationComponents) {
+        for (AbstractOrganizationComponent organizationComponent : organizationComponents) {
             organizationComponent.print();
         }
     }

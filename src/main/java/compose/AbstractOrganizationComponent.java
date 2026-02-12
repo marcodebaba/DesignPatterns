@@ -9,22 +9,22 @@ import lombok.Data;
  * @date: 2026年02月10日 15:54
  */
 @Data
-public abstract class OrganizationComponent {
+public abstract class AbstractOrganizationComponent {
     private String name;
     private String description;
 
-    protected void add(OrganizationComponent component) {
+    protected void add(AbstractOrganizationComponent component) {
         //默认实现
         throw new UnsupportedOperationException();
     }
 
-    protected void remove(OrganizationComponent component) {
+    protected void remove(AbstractOrganizationComponent component) {
         //默认实现
         throw new UnsupportedOperationException();
     }
 
     //构造器
-    public OrganizationComponent(String name, String description) {
+    public AbstractOrganizationComponent(String name, String description) {
         this.name = name;
         this.description = description;
     }

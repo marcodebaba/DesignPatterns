@@ -8,9 +8,9 @@ package adapterMode;
  */
 public class PassportService {
     /**
-     * @param username
-     * @param password
-     * @return
+     * @param username String
+     * @param password String
+     * @return 注册结果 ResultMsg
      */
     public ResultMsg register(String username, String password, String registerChannel) {
         return new ResultMsg(200, "注册成功", new Member(username, password, registerChannel));
