@@ -1,5 +1,6 @@
 package proxy.proxyFactory;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -18,6 +19,7 @@ import java.lang.reflect.Method;
  * @Description：
  * @date: 2021年10月09日 10:19 上午
  */
+@Slf4j
 public class ProxyFactoryDemo {
     public static void main(String[] args) {
         ProxyFactory proxyFactory = new ProxyFactory();
@@ -69,9 +71,9 @@ public class ProxyFactoryDemo {
                 return new MethodInterceptor() {
                     @Override
                     public Object invoke(MethodInvocation invocation) throws Throwable {
-                        System.out.println("before...");
+                        log.info("before...");
                         Object result = invocation.proceed();
-                        System.out.println("after...");
+                        log.info("after...");
                         return result;
                     }
                 };

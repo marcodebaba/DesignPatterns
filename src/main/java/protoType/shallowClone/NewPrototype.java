@@ -1,10 +1,13 @@
 package protoType.shallowClone;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by marcopan on 17/10/20.
  * 浅克隆：对值类型的成员变量进行值的复制,对引用类型的成员变量只复制引用,不复制引用的对象.
  * 深克隆：对值类型的成员变量进行值的复制,对引用类型的成员变量也进行引用对象的复制.
  */
+@Slf4j
 public class NewPrototype implements Cloneable {
     private String id;
     private Prototype prototype;
@@ -20,11 +23,11 @@ public class NewPrototype implements Cloneable {
         copyObj.setId("testCopy");
         copyObj.getPrototype().setName("changed object");
 
-        System.out.println("original object id:" + newObj.getId());
-        System.out.println("original object name:" + newObj.getPrototype().getName());
+        log.info("original object id:{}", newObj.getId());
+        log.info("original object name:{}", newObj.getPrototype().getName());
 
-        System.out.println("cloned object id:" + copyObj.getId());
-        System.out.println("cloned object name:" + copyObj.getPrototype().getName());
+        log.info("cloned object id:{}", copyObj.getId());
+        log.info("cloned object name:{}", copyObj.getPrototype().getName());
     }
 
     public String getId() {
@@ -52,4 +55,3 @@ public class NewPrototype implements Cloneable {
         }
     }
 }
-

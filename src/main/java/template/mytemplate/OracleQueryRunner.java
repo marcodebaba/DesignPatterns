@@ -1,5 +1,7 @@
 package template.mytemplate;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,11 +10,12 @@ import java.sql.Statement;
 /**
  * Created by marcopan on 17/9/26.
  */
+@Slf4j
 public class OracleQueryRunner extends QueryRunner {
 
     @Override
     public Connection createConnection() {
-        System.out.println("createConnection from OracleQueryRunner");
+        log.info("createConnection from OracleQueryRunner");
         return null;
     }
 
@@ -23,7 +26,7 @@ public class OracleQueryRunner extends QueryRunner {
 
     @Override
     public ResultSet runSQL(Connection conn, String sql) {
-        System.out.println("runSQL from OracleQueryRunner");
+        log.info("runSQL from OracleQueryRunner");
         Statement st = null;
         try {
             st = conn.createStatement();

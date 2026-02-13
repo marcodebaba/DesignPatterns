@@ -1,5 +1,8 @@
 package observer.newspaper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Client {
 
     public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class Client {
 
         //有新报纸了
         newsPaper.sendPaper();
-        System.out.println("---------------发完报纸了------------------");
+        log.info("---------------发完报纸了------------------");
 
         //小明不想订了，取消报纸
         newsPaper.removeSubscriber(xiaoMing);

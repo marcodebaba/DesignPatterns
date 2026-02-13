@@ -1,20 +1,23 @@
 package factorymode.factoryMethodmode.connection;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author：marco.pan
  * @ClassName：PostgreSQLConnection
  * @Description：
  * @date: 2026年02月05日 13:18
  */
+@Slf4j
 public class PostgreSQLConnection implements IConnection {
     @Override
     public void connect() {
-        System.out.println("PostgreSQL: 建立连接");
+        log.info("PostgreSQL: 建立连接");
     }
 
     @Override
     public void disconnect() {
-        System.out.println("PostgreSQL: 断开连接");
+        log.info("PostgreSQL: 断开连接");
     }
 
     @Override

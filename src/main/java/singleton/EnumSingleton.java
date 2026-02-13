@@ -1,10 +1,13 @@
 package singleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+@Slf4j
 public enum EnumSingleton {
 
     INSTANCE;
@@ -30,9 +33,9 @@ public enum EnumSingleton {
             EnumSingleton instance2 = (EnumSingleton) ois.readObject();
             ois.close();
 
-            System.out.println(instance1.getData());
-            System.out.println(instance2.getData());
-            System.out.println(instance1.getData() == instance2.getData());
+            log.info("{}", instance1.getData());
+            log.info("{}", instance2.getData());
+            log.info("{}", instance1.getData() == instance2.getData());
         } catch (Exception e) {
             e.printStackTrace();
         }

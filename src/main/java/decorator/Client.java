@@ -1,10 +1,13 @@
 package decorator;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Client {
     public static void main(String[] args) throws Exception {
         BoardHandler mb = new ColorFilter(new FrameFilter(new PictureBoard()));
         String content = mb.hangUp("picture");
-        System.out.println(content);
+        log.info("{}", content);
 
         //new BufferedInputStream(new DataInputStream(new FileInputStream("")));
     }

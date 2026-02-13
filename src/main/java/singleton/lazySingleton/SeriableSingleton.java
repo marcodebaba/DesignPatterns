@@ -1,7 +1,10 @@
 package singleton.lazySingleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 
+@Slf4j
 public class SeriableSingleton implements Serializable {
 
     //序列化就是说把内存中的状态通过转换成字节码的形式
@@ -39,9 +42,9 @@ public class SeriableSingleton implements Serializable {
             s1 = (SeriableSingleton) ois.readObject();
             ois.close();
 
-            System.out.println(s1);
-            System.out.println(s2);
-            System.out.println(s1 == s2);
+            log.info("{}", s1);
+            log.info("{}", s2);
+            log.info("{}", s1 == s2);
 
         } catch (Exception e) {
             e.printStackTrace();

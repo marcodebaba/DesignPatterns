@@ -1,14 +1,17 @@
 package proxy.dynamicProxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by marcopan on 2018/9/8.
  */
+@Slf4j
 public class RealSubject implements ISubject {
     public void requestHouse1() {
-        System.out.println("requestHouse1 from RealSubject");
+        log.info("requestHouse1 from RealSubject");
     }
 
     public void requestHouse2() {
-        System.out.println("requestHouse2 from RealSubject");
+        log.info("requestHouse2 from RealSubject");
     }
 }

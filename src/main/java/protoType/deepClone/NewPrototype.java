@@ -1,8 +1,11 @@
 package protoType.deepClone;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by marcopan on 17/10/20.
  */
+@Slf4j
 public class NewPrototype implements Cloneable {
     private String id;
     private Prototype prototype;
@@ -19,11 +22,11 @@ public class NewPrototype implements Cloneable {
         clonObj.setId("testClone");
         clonObj.getPrototype().setName("changed object");
 
-        System.out.println("original object id:" + newObj.getId());
-        System.out.println("original object name:" + newObj.getPrototype().getName());
+        log.info("original object id:{}", newObj.getId());
+        log.info("original object name:{}", newObj.getPrototype().getName());
 
-        System.out.println("cloned object id:" + clonObj.getId());
-        System.out.println("cloned object name:" + clonObj.getPrototype().getName());
+        log.info("cloned object id:{}", clonObj.getId());
+        log.info("cloned object name:{}", clonObj.getPrototype().getName());
     }
 
     public String getId() {

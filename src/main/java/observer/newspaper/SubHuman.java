@@ -1,5 +1,8 @@
 package observer.newspaper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SubHuman implements ISubScribe {
 
     //订阅者的名字
@@ -11,6 +14,6 @@ public class SubHuman implements ISubScribe {
 
     @Override
     public void getNewsPaper() {
-        System.out.println(subScribeName + "!! 有新的报纸了，请查收！");
+        log.info("{}!! 有新的报纸了，请查收！", subScribeName);
     }
 }

@@ -1,13 +1,16 @@
 package proxy.staticProxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 真实角色--房东
  *
  * @author marcopan
  */
+@Slf4j
 public class RealSubject implements IAbstractSubject {
 
     public void rentHouse() {
-        System.out.println("rentHouse from RealSubject");
+        log.info("rentHouse from RealSubject");
     }
 }

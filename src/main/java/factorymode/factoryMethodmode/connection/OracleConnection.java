@@ -1,20 +1,23 @@
 package factorymode.factoryMethodmode.connection;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author：marco.pan
  * @ClassName：OracleConnection
  * @Description：
  * @date: 2026年02月09日 15:43
  */
+@Slf4j
 public class OracleConnection  implements IConnection {
     @Override
     public void connect() {
-        System.out.println("Oracle: 建立连接");
+        log.info("Oracle: 建立连接");
     }
 
     @Override
     public void disconnect() {
-        System.out.println("Oracle: 断开连接");
+        log.info("Oracle: 断开连接");
     }
 
     @Override

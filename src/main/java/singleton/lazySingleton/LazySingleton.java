@@ -1,5 +1,7 @@
 package singleton.lazySingleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 
 /**
@@ -9,6 +11,7 @@ import java.io.*;
  * 反射攻击解决方法：在构造函数中判断单例是否为空
  * 序列化攻击解决方法：重写readResolve()方法
  */
+@Slf4j
 public class LazySingleton implements Serializable {
     private LazySingleton() {
         // 防止通过反射来破坏单例
@@ -37,7 +40,7 @@ public class LazySingleton implements Serializable {
             LazySingleton instance2 = (LazySingleton) ois.readObject();
             ois.close();
 
-            System.out.println(instance1 == instance2);
+            log.info("{}", instance1 == instance2);
         } catch (Exception e) {
             e.printStackTrace();
         }

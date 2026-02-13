@@ -1,5 +1,6 @@
 package proxy.proxyFactory;
 
+import lombok.extern.slf4j.Slf4j;
 import proxy.staticProxy.IAbstractSubject;
 
 /**
@@ -7,9 +8,10 @@ import proxy.staticProxy.IAbstractSubject;
  *
  * @author marcopan
  */
+@Slf4j
 public class RealSubject implements IAbstractSubject {
 
     public void rentHouse() {
-        System.out.println("rentHouse from RealSubject");
+        log.info("rentHouse from RealSubject");
     }
 }

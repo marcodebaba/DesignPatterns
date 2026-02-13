@@ -1,7 +1,9 @@
 package strategy.pay;
 
+import lombok.extern.slf4j.Slf4j;
 import strategy.pay.payport.PayStrategy;
 
+@Slf4j
 public class PayStrategyTest {
 
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class PayStrategyTest {
         //基本算法固定的
 
         //这个值是在支付的时候才决定用哪个值
-        System.out.println(order.pay(PayStrategy.ALI_PAY));
+        log.info("{}", order.pay(PayStrategy.ALI_PAY));
     }
 
 }

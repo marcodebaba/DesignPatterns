@@ -1,8 +1,10 @@
 package strategy.pay;
 
+import lombok.extern.slf4j.Slf4j;
 import strategy.pay.payport.PayStrategy;
 import strategy.pay.payport.Payment;
 
+@Slf4j
 public class Order {
     private String uid;
     private String orderId;
@@ -22,8 +24,8 @@ public class Order {
 
     public MsgResult pay(String payKey) {
         Payment payment = PayStrategy.get(payKey);
-        System.out.println("欢迎使用" + payment.getName());
-        System.out.println("本次交易金额为：" + amount + "，开始扣款...");
+        log.info("欢迎使用{}", payment.getName());
+        log.info("本次交易金额为：{}，开始扣款...", amount);
         return payment.pay(uid, amount);
     }
 }

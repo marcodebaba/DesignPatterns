@@ -2,12 +2,14 @@ package iterator;
 
 import iterator.aggregate.Aggregate;
 import iterator.aggregate.ArrayAggregate;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
 
 /**
  * Created by marcopan on 17/4/7.
  */
+@Slf4j
 public class Client {
     public static void main(String[] args) {
         Aggregate array = new ArrayAggregate(4);
@@ -25,7 +27,7 @@ public class Client {
         Iterator it = array.createIterator();
         while (it.hasNext()) {
             Book book = (Book) it.next();
-            System.out.println(book.getName());
+            log.info("{}", book.getName());
         }
     }
 }
