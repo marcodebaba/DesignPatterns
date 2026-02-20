@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date: 2026年02月09日 15:44
  */
 @Slf4j
-public class OracleCommand  implements ICommand {
+public class OracleCommand implements ICommand {
     private String result;
 
     @Override

@@ -26,7 +26,7 @@ public class TestClient {
         ResultMsg tokenResult = adapter.registerByThird("my_token_789", RegisterChannel.TOKEN);
         log.info("Token: {}", tokenResult.getData());
 
-        ResultMsg aliPayResult = adapter.registerByThird("aliPay_OpenId_000", RegisterChannel.ALIPAY);
-        log.info("Alipay: {}", aliPayResult.getData());
+        ResultMsg aliPayResult = adapter.registerByThird("ali", RegisterChannel.ALIPAY);
+        log.info("Alipay: {}", aliPayResult.getMsg());
     }
 }

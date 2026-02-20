@@ -18,6 +18,6 @@ public class RegisterForTokenAdapter extends AbstractRegisterAdapter {
         String username = "TOKEN_USER_" + id;
         String password = generatePassword("TK", id);
         log.info("Token Register logic: {}", id);
-        return passportService.register(username, password, RegisterChannel.TOKEN.name());
+        return passportService.register(username, password, RegisterChannel.TOKEN);
     }
 }

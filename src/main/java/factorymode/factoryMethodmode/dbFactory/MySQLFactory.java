@@ -1,9 +1,9 @@
 package factorymode.factoryMethodmode.dbFactory;
 
 import factorymode.factoryMethodmode.command.ICommand;
+import factorymode.factoryMethodmode.command.MySQLCommand;
 import factorymode.factoryMethodmode.connection.IConnection;
 import factorymode.factoryMethodmode.connection.MySQLConnection;
-import factorymode.factoryMethodmode.command.MySQLCommand;
 
 /**
  * @author：marco.pan

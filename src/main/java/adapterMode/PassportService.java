@@ -12,7 +12,7 @@ public class PassportService {
      * @param password String
      * @return 注册结果 ResultMsg
      */
-    public ResultMsg register(String username, String password, String registerChannel) {
+    public ResultMsg register(String username, String password, RegisterChannel registerChannel) {
         return new ResultMsg(200, "注册成功", new Member(username, password, registerChannel));
     }
 }

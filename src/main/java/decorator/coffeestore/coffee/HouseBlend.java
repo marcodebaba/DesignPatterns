@@ -1,10 +1,11 @@
 package decorator.coffeestore.coffee;
 
-class HouseBlend extends Beverage {
+public class HouseBlend extends AbstractBeverage {
     public HouseBlend() {
-        description = "houseblend";
+        description = "house blend";
     }
 
+    @Override
     public double cost() {
         return .89;
     }

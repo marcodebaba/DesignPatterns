@@ -6,6 +6,7 @@ public class FrameFilter extends Decorator {
         super(handler);
     }
 
+    @Override
     public String hangUp(String content) {
         String temp = super.hangUp(content);
         temp += " add frame ";

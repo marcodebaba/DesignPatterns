@@ -17,6 +17,6 @@ public class RegisterForQQAdapter extends AbstractRegisterAdapter {
         // 模拟调用 QQ 开放平台 API，用 openId 生成内部密码
         String password = generatePassword("QQ", id);
         log.info("QQ Register logic: {}", id);
-        return passportService.register(id, password, RegisterChannel.QQ.name());
+        return passportService.register(id, password, RegisterChannel.QQ);
     }
 }

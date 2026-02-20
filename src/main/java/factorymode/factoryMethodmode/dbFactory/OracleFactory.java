@@ -11,7 +11,7 @@ import factorymode.factoryMethodmode.connection.OracleConnection;
  * @Description：
  * @date: 2026年02月09日 15:45
  */
-public class OracleFactory  implements IAbstractDatabaseFactory {
+public class OracleFactory implements IAbstractDatabaseFactory {
     @Override
     public IConnection createConnection() {
         return new OracleConnection();

@@ -12,11 +12,11 @@ import lombok.Data;
 public class Member {
     private String username;
     private String password;
-    private String registerChannel;
+    private RegisterChannel registerChannel;
     private String mid;
     private String info;
 
-    public Member(String username, String password, String registerChannel) {
+    public Member(String username, String password, RegisterChannel registerChannel) {
         this.username = username;
         this.password = password;
         this.registerChannel = registerChannel;

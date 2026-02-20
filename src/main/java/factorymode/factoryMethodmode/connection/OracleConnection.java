@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date: 2026年02月09日 15:43
  */
 @Slf4j
-public class OracleConnection  implements IConnection {
+public class OracleConnection implements IConnection {
     @Override
     public void connect() {
         log.info("Oracle: 建立连接");

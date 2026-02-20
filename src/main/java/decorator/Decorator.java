@@ -1,7 +1,7 @@
 package decorator;
 
-public class Decorator implements BoardHandler {
-    BoardHandler handler;
+public abstract class Decorator implements BoardHandler {
+    private BoardHandler handler;
 
     public Decorator(BoardHandler handler) {
         this.handler = handler;
