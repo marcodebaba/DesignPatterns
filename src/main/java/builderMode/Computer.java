@@ -1,6 +1,5 @@
 package builderMode;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -13,9 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Computer {
-    @NotNull
     private final String cpu;
-    @NotNull
     private final String ram;
 
     //usb接口数，可选
