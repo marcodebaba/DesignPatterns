@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.math.BigDecimal;
 
 /**
- * @author：marco.pan
- * @ClassName：Alipay
- * @Description：
- * @date: 2026年02月10日 13:40
+ * Author：marco.pan
+ * ClassName：Alipay
+ * Description：
+ * Date: 2026年02月10日 13:40
  */
 @Slf4j
 public class Alipay extends AbstractPay {

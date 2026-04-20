@@ -5,10 +5,10 @@ import bridgeMode.payMode.IPayMode;
 import java.math.BigDecimal;
 
 /**
- * @author：marco.pan
- * @ClassName：Pay
- * @Description：
- * @date: 2026年02月10日 13:40
+ * Author：marco.pan
+ * ClassName：Pay
+ * Description：
+ * Date: 2026年02月10日 13:40
  */
 public abstract class AbstractPay {
     protected IPayMode payMode;

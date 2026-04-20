@@ -3,10 +3,10 @@ package bridgeMode.payMode;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author：marco.pan
- * @ClassName：PayByFace
- * @Description：刷脸支付
- * @date: 2026年02月10日 13:46
+ * Author：marco.pan
+ * ClassName：PayByFace
+ * Description：刷脸支付
+ * Date: 2026年02月10日 13:46
  */
 @Slf4j
 public class PayByFace implements IPayMode {

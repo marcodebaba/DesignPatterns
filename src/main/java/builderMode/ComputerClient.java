@@ -3,10 +3,10 @@ package builderMode;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author：marco.pan
- * @ClassName：ComputerClient
- * @Description：
- * @date: 2026年02月06日 15:15
+ * Author：marco.pan
+ * ClassName：ComputerClient
+ * Description：
+ * Date: 2026年02月06日 15:15
  */
 @Slf4j
 public class ComputerClient {

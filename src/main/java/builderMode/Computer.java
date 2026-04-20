@@ -2,12 +2,13 @@ package builderMode;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.util.StringUtils;
 
 /**
- * @author：marco.pan
- * @ClassName：Computer
- * @Description：
- * @date: 2026年02月06日 15:13
+ * Author：marco.pan
+ * ClassName：Computer
+ * Description：
+ * Date: 2026年02月06日 15:13
  */
 @Getter
 @ToString
@@ -59,10 +60,10 @@ public class Computer {
          * 必选参数通过构造器强制传入
          */
         public Builder(String cpu, String ram) {
-            if (cpu == null || cpu.isEmpty()) {
+            if (!StringUtils.hasLength(cpu)) {
                 throw new IllegalArgumentException("cpu is required");
             }
-            if (ram == null || ram.isEmpty()) {
+            if (!StringUtils.hasLength(ram)) {
                 throw new IllegalArgumentException("ram is required");
             }
             this.cpu = cpu;

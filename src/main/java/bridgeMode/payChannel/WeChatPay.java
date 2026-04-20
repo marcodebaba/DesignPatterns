@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.math.BigDecimal;
 
 /**
- * @author：marco.pan
- * @ClassName：WeChatPay
- * @Description：
- * @date: 2026年02月10日 13:41
+ * Author：marco.pan
+ * ClassName：WeChatPay
+ * Description：
+ * Date: 2026年02月10日 13:41
  */
 @Slf4j
 public class WeChatPay extends AbstractPay {

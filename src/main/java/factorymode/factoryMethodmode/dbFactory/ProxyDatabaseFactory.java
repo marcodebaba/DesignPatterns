@@ -7,10 +7,10 @@ import factorymode.factoryMethodmode.handler.LoggingInvocationHandler;
 import java.lang.reflect.Proxy;
 
 /**
- * @author：marco.pan
- * @ClassName：ProxyDatabaseFactory
- * @Description：作为代理类，实现所有的产品等级
- * @date: 2026年02月05日 13:25
+ * Author：marco.pan
+ * ClassName：ProxyDatabaseFactory
+ * Description：作为代理类，实现所有的产品等级
+ * Date: 2026年02月05日 13:25
  */
 public class ProxyDatabaseFactory implements IAbstractDatabaseFactory {
     private final IAbstractDatabaseFactory factory;

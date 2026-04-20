@@ -2,8 +2,10 @@ package proxy.mybatisSample;
 
 import sun.misc.ProxyGenerator;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.lang.reflect.Proxy;
 
 public class MybatisFactory {
@@ -17,9 +19,10 @@ public class MybatisFactory {
         byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{clazz});
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(clazz.getResource("").getPath() + "/$Proxy0.class");
+            File dir = new File(clazz.getResource("").toURI());
+            fos = new FileOutputStream(new File(dir, "$Proxy0.class"));
             fos.write(bytes);
-        } catch (Exception e) {
+        } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         } finally {
             try {

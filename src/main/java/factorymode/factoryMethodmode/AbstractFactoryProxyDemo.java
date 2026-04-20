@@ -7,10 +7,10 @@ import factorymode.factoryMethodmode.dbProvider.DatabaseFactoryProvider;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author：marco.pan
- * @ClassName：AbstractFactoryProxyDemo
- * @Description：Database Client Test
- * @date: 2026年02月05日 13:29
+ * Author：marco.pan
+ * ClassName：AbstractFactoryProxyDemo
+ * Description：Database Client Test
+ * Date: 2026年02月05日 13:29
  */
 @Slf4j
 public class AbstractFactoryProxyDemo {

@@ -3,10 +3,10 @@ package factorymode.factoryMethodmode.dbProvider;
 import factorymode.factoryMethodmode.dbFactory.*;
 
 /**
- * @author：marco.pan
- * @ClassName：DatabaseFactoryProvider
- * @Description：注册所有的产品族，返回产品族的代理类
- * @date: 2026年02月05日 13:28
+ * Author：marco.pan
+ * ClassName：DatabaseFactoryProvider
+ * Description：定义具体工厂，返回工厂的代理类
+ * Date: 2026年02月05日 13:28
  */
 public class DatabaseFactoryProvider {
     public static IAbstractDatabaseFactory getFactory(String dbType) {

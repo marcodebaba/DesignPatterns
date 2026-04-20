@@ -29,3 +29,10 @@ jobs:
 
       - name: Package
         run: mvn package -DskipTests -B
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DesignPatterns-jar
+          path: target/*.jar
+          retention-days: 7
