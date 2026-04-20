@@ -4,14 +4,13 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 // JDBC
 public abstract class JdbcTemplate {
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     public JdbcTemplate(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -25,32 +24,17 @@ public abstract class JdbcTemplate {
         return conn.prepareStatement(sql);
     }
 
-    private ResultSet executeQuery(PreparedStatement pstmt, Object[] values) throws Exception {
-        for (int i = 0; i < values.length; i++) {
-            pstmt.setObject(i, values[i]);
-        }
-        return pstmt.executeQuery();
-    }
-
-    private void closeStatement(Statement stmt) throws Exception {
-        if (stmt != null) {
-            stmt.close();
+    private void bindParameters(PreparedStatement pstmt, Object[] values) throws Exception {
+        if (values != null) {
+            for (int i = 0; i < values.length; i++) {
+                pstmt.setObject(i + 1, values[i]);
+            }
         }
     }
 
-    private void closeResultSet(ResultSet rs) throws Exception {
-        if (rs != null) {
-            rs.close();
-        }
-    }
 
-    private void closeConnection(Connection conn) throws Exception {
-        //通常把它放到连接池回收
-    }
-
-
-    private List<?> parseResultSet(ResultSet rs, RowMapper rowMapper) throws Exception {
-        List<Object> result = new ArrayList<Object>();
+    private <T> List<T> parseResultSet(ResultSet rs, RowMapper<T> rowMapper) throws Exception {
+        List<T> result = new ArrayList<T>();
         int rowNum = 1;
         while (rs.next()) {
             result.add(rowMapper.mapRow(rs, rowNum++));
@@ -58,28 +42,19 @@ public abstract class JdbcTemplate {
         return result;
     }
 
-    public List<?> executeQuery(String sql, RowMapper<?> rowMapper, Object[] values) {
-        try {
+    public <T> List<T> executeQuery(String sql, RowMapper<T> rowMapper, Object[] values) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = this.createPreparedStatement(conn, sql)) {
             //1、获取连接
-            Connection conn = this.getConnection();
             //2、创建语句集
-            PreparedStatement pstmt = this.createPreparedStatement(conn, sql);
+            this.bindParameters(pstmt, values);
             //3、执行语句集，并且获得结果集
-            ResultSet rs = this.executeQuery(pstmt, values);
-            //4、解析语句集
-            List<?> result = this.parseResultSet(rs, rowMapper);
-
-            //5、关闭结果集
-            this.closeResultSet(rs);
-            //6、关闭语句集
-            this.closeStatement(pstmt);
-            //7、关闭连接
-            this.closeConnection(conn);
-
-            return result;
+            try (ResultSet rs = pstmt.executeQuery()) {
+                //4、解析语句集
+                return this.parseResultSet(rs, rowMapper);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("executeQuery failed", e);
         }
     }
 }

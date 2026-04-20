@@ -1,7 +1,6 @@
 package template.dao;
 
 import template.JdbcTemplate;
-import template.RowMapper;
 import template.entity.Member;
 
 import javax.sql.DataSource;
@@ -13,15 +12,15 @@ public class MemberDao extends JdbcTemplate {
         super(dataSource);
     }
 
-    public List<?> selectAll() {
+    public List<Member> selectAll() {
         String sql = "select * from t_member";
-        return super.executeQuery(sql, (RowMapper<Member>) (rs, rowNum) -> {
+        return super.executeQuery(sql, (rs, rowNum) -> {
             Member member = new Member();
             member.setUsername(rs.getString("username"));
             member.setPassword(rs.getString("password"));
             member.setAge(rs.getInt("age"));
             member.setAddr(rs.getString("addr"));
             return member;
-        }, null);
+        }, new Object[0]);
     }
 }
