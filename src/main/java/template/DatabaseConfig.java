@@ -4,20 +4,20 @@ package template;
  * 数据库连接配置
  */
 public class DatabaseConfig {
-    private final String driverClassName;
+    private final String driverClass;
     private final String url;
     private final String username;
     private final String password;
 
-    public DatabaseConfig(String driverClassName, String url, String username, String password) {
-        this.driverClassName = driverClassName;
+    public DatabaseConfig(String driverClass, String url, String username, String password) {
+        this.driverClass = driverClass;
         this.url = url;
         this.username = username;
         this.password = password;
     }
 
-    public String getDriverClassName() {
-        return driverClassName;
+    public String getDriverClass() {
+        return driverClass;
     }
 
     public String getUrl() {
