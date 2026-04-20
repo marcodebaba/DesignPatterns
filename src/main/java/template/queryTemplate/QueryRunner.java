@@ -12,7 +12,7 @@ public abstract class QueryRunner<T> {
 
     public abstract T runSQL(Connection conn, String sql);
 
-    public T run() throws Exception {
+    public T execute() throws Exception {
         try (Connection conn = this.createConnection()) {
             String sql = this.createSQL();
             return runSQL(conn, sql);

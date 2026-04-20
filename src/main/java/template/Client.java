@@ -15,7 +15,7 @@ public class Client {
                      new AnnotationConfigApplicationContext(TemplateConfiguration.class)) {
             QueryRunner<List<String>> queryRunner = context.getBean(MySQLQueryRunner.class);
             try {
-                List<String> usernames = queryRunner.run();
+                List<String> usernames = queryRunner.execute();
                 System.out.println(usernames);
             } catch (Exception e) {
                 e.printStackTrace();
