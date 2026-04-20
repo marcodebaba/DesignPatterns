@@ -9,23 +9,21 @@ import java.math.BigDecimal;
 
 public class ChainDemoApplication {
     public static void main(String[] args) {
-        OrderController controller = new OrderController(
-                new OrderCheckChain(CheckHandlerScanner.scan("chain.handler"))
-        );
+        OrderController controller = new OrderController();
 
-        OrderRequest ok = new OrderRequest();
-        ok.setUserId("u1");
-        ok.setSkuId("sku1");
-        ok.setQuantity(2);
-        ok.setAmount(new BigDecimal("99.0"));
+        OrderRequest okRequest = new OrderRequest();
+        okRequest.setUserId("u1");
+        okRequest.setSkuId("sku1");
+        okRequest.setQuantity(2);
+        okRequest.setAmount(new BigDecimal("99.0"));
 
-        OrderRequest noStock = new OrderRequest();
-        noStock.setUserId("u2");
-        noStock.setSkuId("sku2");
-        noStock.setQuantity(99);
-        noStock.setAmount(new BigDecimal("99.0"));
+        OrderRequest noStockRequest = new OrderRequest();
+        noStockRequest.setUserId("u2");
+        noStockRequest.setSkuId("sku2");
+        noStockRequest.setQuantity(99);
+        noStockRequest.setAmount(new BigDecimal("99.0"));
 
-        System.out.println(controller.createOrder(ok));
-        System.out.println(controller.createOrder(noStock));
+        System.out.println(controller.createOrder(okRequest));
+        System.out.println(controller.createOrder(noStockRequest));
     }
 }

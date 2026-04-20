@@ -3,9 +3,7 @@ package chain.service;
 import chain.handler.OrderCheckHandler;
 import chain.model.OrderRequest;
 import chain.model.ValidationResult;
-import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -16,9 +14,7 @@ public class OrderCheckChain {
 
     public OrderCheckChain(List<OrderCheckHandler> handlers) {
         Objects.requireNonNull(handlers, "handlers不能为空");
-        List<OrderCheckHandler> sortedHandlers = new ArrayList<OrderCheckHandler>(handlers);
-        AnnotationAwareOrderComparator.sort(sortedHandlers);
-        this.checkHandlers = Collections.unmodifiableList(sortedHandlers);
+        this.checkHandlers = Collections.unmodifiableList(handlers);
     }
 
     public ValidationResult execute(OrderRequest request) {

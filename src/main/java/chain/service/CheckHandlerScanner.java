@@ -4,6 +4,7 @@ import chain.handler.CheckHandler;
 import chain.handler.OrderCheckHandler;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 import java.lang.reflect.Constructor;
@@ -26,6 +27,7 @@ public final class CheckHandlerScanner {
         for (BeanDefinition candidate : candidates) {
             handlers.add(instantiate(candidate.getBeanClassName()));
         }
+        AnnotationAwareOrderComparator.sort(handlers);
         return handlers;
     }
 
