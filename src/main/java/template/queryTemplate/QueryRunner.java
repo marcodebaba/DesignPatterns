@@ -1,4 +1,4 @@
-package template.mytemplate;
+package template.queryTemplate;
 
 import java.sql.Connection;
 

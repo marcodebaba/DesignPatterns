@@ -1,7 +1,8 @@
-package template.mytemplate;
+package template;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import template.TemplateConfiguration;
+import template.queryTemplate.MySQLQueryRunner;
+import template.queryTemplate.QueryRunner;
 
 import java.util.List;
 

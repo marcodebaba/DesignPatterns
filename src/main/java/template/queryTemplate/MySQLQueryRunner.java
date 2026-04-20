@@ -1,4 +1,4 @@
-package template.mytemplate;
+package template.queryTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 import template.DatabaseConfig;
