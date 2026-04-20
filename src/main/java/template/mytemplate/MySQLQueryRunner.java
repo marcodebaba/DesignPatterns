@@ -1,8 +1,7 @@
 package template.mytemplate;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
-import org.springframework.core.io.ClassPathResource;
+import template.DatabaseConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by marcopan on 17/9/26.
@@ -19,23 +17,17 @@ import java.util.Properties;
 @Slf4j
 public class MySQLQueryRunner extends QueryRunner<List<String>> {
 
-    private static final String DRIVER_CLASS_KEY = "spring.datasource.driver-class-name";
-    private static final String URL_KEY = "spring.datasource.url";
-    private static final String USERNAME_KEY = "spring.datasource.username";
-    private static final String PASSWORD_KEY = "spring.datasource.password";
-    private static final Properties YAML_PROPERTIES = loadYamlProperties();
-
     private final String driverClassName;
     private final String url;
     private final String username;
     private final String password;
 
-    public MySQLQueryRunner() {
+    public MySQLQueryRunner(DatabaseConfig databaseConfig) {
         this(
-                YAML_PROPERTIES.getProperty(DRIVER_CLASS_KEY),
-                YAML_PROPERTIES.getProperty(URL_KEY),
-                YAML_PROPERTIES.getProperty(USERNAME_KEY),
-                YAML_PROPERTIES.getProperty(PASSWORD_KEY)
+                databaseConfig.getDriverClassName(),
+                databaseConfig.getUrl(),
+                databaseConfig.getUsername(),
+                databaseConfig.getPassword()
         );
     }
 
@@ -44,13 +36,6 @@ public class MySQLQueryRunner extends QueryRunner<List<String>> {
         this.url = url;
         this.username = username;
         this.password = password;
-    }
-
-    private static Properties loadYamlProperties() {
-        YamlPropertiesFactoryBean factoryBean = new YamlPropertiesFactoryBean();
-        factoryBean.setResources(new ClassPathResource("application.yml"));
-        Properties properties = factoryBean.getObject();
-        return properties != null ? properties : new Properties();
     }
 
     @Override

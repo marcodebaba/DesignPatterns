@@ -1,5 +1,8 @@
 package template.mytemplate;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import template.TemplateConfiguration;
+
 import java.util.List;
 
 /**
@@ -7,12 +10,15 @@ import java.util.List;
  */
 public class Client {
     public static void main(String[] args) {
-        QueryRunner<List<String>> queryRunner = new MySQLQueryRunner();
-        try {
-            List<String> usernames = queryRunner.run();
-            System.out.println(usernames);
-        } catch (Exception e) {
-            e.printStackTrace();
+        try (AnnotationConfigApplicationContext context =
+                     new AnnotationConfigApplicationContext(TemplateConfiguration.class)) {
+            QueryRunner<List<String>> queryRunner = context.getBean(MySQLQueryRunner.class);
+            try {
+                List<String> usernames = queryRunner.run();
+                System.out.println(usernames);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

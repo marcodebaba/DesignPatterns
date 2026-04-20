@@ -1,11 +1,5 @@
 package proxy.mybatisSample;
 
-import sun.misc.ProxyGenerator;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.lang.reflect.Proxy;
 
 public class MybatisFactory {
@@ -16,23 +10,8 @@ public class MybatisFactory {
     }
 
     public static void generateSourceCode(Class clazz) {
-        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{clazz});
-        FileOutputStream fos = null;
-        try {
-            File dir = new File(clazz.getResource("").toURI());
-            fos = new FileOutputStream(new File(dir, "$Proxy0.class"));
-            fos.write(bytes);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fos != null) {
-                    fos.close();
-                    fos = null;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        // 兼容不同JDK版本，开启JDK动态代理类落盘
+        System.setProperty("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
+        System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
     }
 }
