@@ -4,6 +4,7 @@ import chain.model.OrderRequest;
 import chain.model.ValidationResult;
 import org.springframework.core.annotation.Order;
 
+@CheckHandler
 @Order(2)
 public class StockCheckHandler implements OrderCheckHandler {
     @Override

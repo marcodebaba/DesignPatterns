@@ -1,10 +1,12 @@
 package chain.model;
 
+import java.math.BigDecimal;
+
 public class OrderRequest {
     private String userId;
     private String skuId;
     private Integer quantity;
-    private Double amount;
+    private BigDecimal amount;
 
     public String getUserId() {
         return userId;
@@ -30,11 +32,11 @@ public class OrderRequest {
         this.quantity = quantity;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 }

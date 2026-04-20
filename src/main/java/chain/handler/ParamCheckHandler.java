@@ -4,6 +4,7 @@ import chain.model.OrderRequest;
 import chain.model.ValidationResult;
 import org.springframework.core.annotation.Order;
 
+@CheckHandler
 @Order(1)
 public class ParamCheckHandler implements OrderCheckHandler {
     @Override
