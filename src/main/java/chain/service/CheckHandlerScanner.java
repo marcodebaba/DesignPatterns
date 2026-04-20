@@ -22,7 +22,7 @@ public final class CheckHandlerScanner {
         scanner.addIncludeFilter(new AnnotationTypeFilter(CheckHandler.class));
 
         Set<BeanDefinition> candidates = scanner.findCandidateComponents(basePackage);
-        List<OrderCheckHandler> handlers = new ArrayList<OrderCheckHandler>();
+        List<OrderCheckHandler> handlers = new ArrayList<>();
         for (BeanDefinition candidate : candidates) {
             handlers.add(instantiate(candidate.getBeanClassName()));
         }

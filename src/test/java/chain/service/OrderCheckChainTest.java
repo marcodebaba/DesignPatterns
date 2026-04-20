@@ -50,10 +50,12 @@ public class OrderCheckChainTest {
     public void shouldFailWhenRequestIsNull() {
         OrderCheckChain chain = new OrderCheckChain(Arrays.asList(new FirstHandler(new ArrayList<String>())));
 
-        ValidationResult result = chain.execute(null);
-
-        Assert.assertFalse(result.isPass());
-        Assert.assertEquals("request不能为空", result.getMessage());
+        try {
+            chain.execute(null);
+            Assert.fail("should throw AssertionError");
+        } catch (AssertionError ex) {
+            Assert.assertEquals("request不能为空", ex.getMessage());
+        }
     }
 
     private static OrderRequest createValidRequest() {

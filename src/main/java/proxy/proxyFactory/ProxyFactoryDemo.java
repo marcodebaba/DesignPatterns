@@ -14,10 +14,10 @@ import proxy.staticProxy.IAbstractSubject;
 import java.lang.reflect.Method;
 
 /**
- * @author：marco.pan
- * @ClassName：ProxyFactoryDemo
- * @Description：
- * @date: 2021年10月09日 10:19 上午
+ * author：marco.pan
+ * ClassName：ProxyFactoryDemo
+ * Description：
+ * Date: 2021年10月09日 10:19 上午
  */
 @Slf4j
 public class ProxyFactoryDemo {

@@ -22,9 +22,8 @@ public class OrderCheckChain {
     }
 
     public ValidationResult execute(OrderRequest request) {
-        if (request == null) {
-            return ValidationResult.fail("request不能为空");
-        }
+        assert request != null : "request不能为空";
+
         for (OrderCheckHandler handler : checkHandlers) {
             ValidationResult result = handler.handle(request);
             if (!result.isPass()) {
