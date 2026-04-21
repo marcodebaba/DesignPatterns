@@ -1,33 +1,16 @@
 package template;
 
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import template.queryTemplate.MySQLQueryRunner;
 
-import java.util.Properties;
-
 @Configuration
+@EnableConfigurationProperties(MySQLDatabaseConfig.class)
 public class TemplateConfiguration {
 
     @Bean
-    public DatabaseConfig databaseConfig() {
-        YamlPropertiesFactoryBean factoryBean = new YamlPropertiesFactoryBean();
-        factoryBean.setResources(new ClassPathResource("application.yml"));
-        Properties properties = factoryBean.getObject();
-        Properties safeProperties = properties != null ? properties : new Properties();
-
-        return new DatabaseConfig(
-                safeProperties.getProperty("spring.mysql.datasource.driver-class-name"),
-                safeProperties.getProperty("spring.mysql.datasource.url"),
-                safeProperties.getProperty("spring.mysql.datasource.username"),
-                safeProperties.getProperty("spring.mysql.datasource.password")
-        );
-    }
-
-    @Bean
-    public MySQLQueryRunner mySQLQueryRunner(DatabaseConfig databaseConfig) {
+    public MySQLQueryRunner mySQLQueryRunner(MySQLDatabaseConfig databaseConfig) {
         return new MySQLQueryRunner(databaseConfig);
     }
 }

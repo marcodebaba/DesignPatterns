@@ -1,7 +1,7 @@
 package template.queryTemplate;
 
 import lombok.extern.slf4j.Slf4j;
-import template.DatabaseConfig;
+import template.MySQLDatabaseConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,9 +22,9 @@ public class MySQLQueryRunner extends QueryRunner<List<String>> {
     private final String username;
     private final String password;
 
-    public MySQLQueryRunner(DatabaseConfig databaseConfig) {
+    public MySQLQueryRunner(MySQLDatabaseConfig databaseConfig) {
         this(
-                databaseConfig.getDriverClass(),
+                databaseConfig.getDriverClassName(),
                 databaseConfig.getUrl(),
                 databaseConfig.getUsername(),
                 databaseConfig.getPassword()

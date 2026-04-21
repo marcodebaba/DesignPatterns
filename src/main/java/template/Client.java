@@ -1,18 +1,18 @@
 package template;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 import template.queryTemplate.MySQLQueryRunner;
 import template.queryTemplate.QueryRunner;
 
 import java.util.List;
 
-/**
- * Created by marcopan on 17/9/26.
- */
 public class Client {
     public static void main(String[] args) {
-        try (AnnotationConfigApplicationContext context =
-                     new AnnotationConfigApplicationContext(TemplateConfiguration.class)) {
+        try (ConfigurableApplicationContext context = new SpringApplicationBuilder(TemplateConfiguration.class)
+                .web(WebApplicationType.NONE)
+                .run(args)) {
             QueryRunner<List<String>> queryRunner = context.getBean(MySQLQueryRunner.class);
             try {
                 List<String> usernames = queryRunner.execute();

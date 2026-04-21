@@ -4,11 +4,10 @@ import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
 
 /**
- *
- * @author：marco.pan
- * @ClassName：IRegisterAdapter
- * @Description：Adaptee（被适配者）= 第三方给你的东西
- * @date: 2026年02月09日 9:29
+ * Author：marco.pan
+ * ClassName：IRegisterAdapter
+ * Description：统一所有适配器的契约
+ * Date: 2026年02月09日 9:29
  */
 public interface IRegisterAdapter {
     boolean isSupport(RegisterChannel channel);
@@ -18,7 +17,7 @@ public interface IRegisterAdapter {
     * @param id String
     * @return adapterMode.ResultMsg
     * @author marcopan
-    * @date 2026/2/12 10:54
+    * @date 2026/4/20 23:35
     **/
     ResultMsg register(String id);
 

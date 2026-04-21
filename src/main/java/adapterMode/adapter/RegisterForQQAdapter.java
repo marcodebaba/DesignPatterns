@@ -5,6 +5,9 @@ import adapterMode.RegisterChannel;
 import adapterMode.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+* Description：Adaptee（被适配者）
+**/
 @Slf4j
 public class RegisterForQQAdapter extends AbstractRegisterAdapter {
 
