@@ -17,8 +17,8 @@ public class Client {
             try {
                 List<String> usernames = queryRunner.execute();
                 System.out.println(usernames);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (java.sql.SQLException e) {
+                System.err.println("Query failed: " + e.getMessage());
             }
         }
     }

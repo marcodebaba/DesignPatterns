@@ -1,18 +1,17 @@
 package template.queryTemplate;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
-/**
- * Created by marcopan on 17/9/26.
- */
 public abstract class QueryRunner<T> {
-    public abstract Connection createConnection();
+
+    public abstract Connection createConnection() throws SQLException;
 
     public abstract String createSQL();
 
-    public abstract T runSQL(Connection conn, String sql);
+    public abstract T runSQL(Connection conn, String sql) throws SQLException;
 
-    public T execute() throws Exception {
+    public T execute() throws SQLException {
         try (Connection conn = this.createConnection()) {
             String sql = this.createSQL();
             return runSQL(conn, sql);
